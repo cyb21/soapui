@@ -1,8 +1,43 @@
-﻿# SoapUI Open Source 5.7.1
+﻿# SoapUI Open Source 5.9.1
 
-#### RELEASE_ME_ON ####
+#### Released on 2025-09-10 ####
 
-### Overall improvements ###
+Proper browser opening for MAC.
+Fix help links.
+
+-------------------------------------------------------------------------------
+
+# SoapUI Open Source 5.9.0
+
+#### Released on 2025-07-16 ####
+
+Fix content-type check for XML.
+
+-------------------------------------------------------------------------------
+
+# SoapUI Open Source 5.8.0
+
+#### Released on 2024-12-20 ####
+
+Upgrade to Java 17.0.12
+Updated libraries: GraphQL -> 22.3
+MacOS ARM native installer
+AES256 project encryption support
+-------------------------------------------------------------------------------
+
+# SoapUI Open Source 5.7.2
+
+#### Released on 2023-11-07 ####
+
+Fixed Zip-Slip Vulnerability.
+
+-------------------------------------------------------------------------------
+
+# SoapUI Open Source 5.7.1
+
+#### Released on 2023-08-01 ####
+
+Fixed an issue where SoapUI version 5.6.0 and 5.7.0 would not install or open on certain machines including Mac OS Ventura. There were issues with an expired Apple Certificate and previous bundled JRE environment.  We have signed the new version with updated Apple Certificate and also updated the bundled JRE environment to Liberica version 16.0.2+7. These updates which resolves this issue for Mac users and the application now installs properly. Windows and Linux versions also received updates to the bundled JRE environment.
 
 -------------------------------------------------------------------------------
 

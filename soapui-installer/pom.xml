@@ -7,7 +7,7 @@
   <parent>
     <artifactId>soapui-project</artifactId>
     <groupId>com.smartbear.soapui</groupId>
-    <version>5.7.1-SNAPSHOT</version>
+    <version>5.9.2-SNAPSHOT</version>
   </parent>
 
   <artifactId>soapui-installer</artifactId>
@@ -23,7 +23,6 @@
           <plugin>
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>exec-maven-plugin</artifactId>
-            <version>${exec-maven-plugin-version}</version>
             <executions>
               <execution>
                 <phase>prepare-package</phase>
@@ -47,7 +46,6 @@
           <plugin>
             <groupId>com.github.danielflower.mavenplugins</groupId>
             <artifactId>maven-gitlog-plugin</artifactId>
-            <version>${maven-gitlog-plugin-version}</version>
             <configuration>
               <reportTitle>
                 SoapUI ${project.version} | https://github.com/SmartBear/soapui/tree/maintenance
@@ -61,7 +59,6 @@
 
           <plugin>
             <artifactId>maven-assembly-plugin</artifactId>
-            <version>${maven-assembly-plugin-version}</version>
             <configuration>
               <outputDirectory>${assembly.build.directory}</outputDirectory>
               <descriptors>
@@ -69,7 +66,8 @@
                 <descriptor>src/main/assembly/dist-standalone.xml</descriptor>
                 <descriptor>src/main/assembly/windows-bin.xml</descriptor>
                 <descriptor>src/main/assembly/linux-bin.xml</descriptor>
-                <descriptor>src/main/assembly/mac-bin.xml</descriptor>
+                <descriptor>src/main/assembly/mac-x64-bin.xml</descriptor>
+                <descriptor>src/main/assembly/mac-arm64-bin.xml</descriptor>
               </descriptors>
               <finalName>${project.name.full}</finalName>
             </configuration>
@@ -101,7 +99,6 @@
           <plugin>
             <groupId>org.sonatype.install4j</groupId>
             <artifactId>install4j-maven-plugin</artifactId>
-            <version>${install4j-maven-plugin.version}</version>
             <configuration>
               <installDir>${install4j.home}</installDir>
               <release>${project.version}</release>
@@ -145,6 +142,10 @@
                   <name>HERMES_INSTALLER</name>
                   <value>${maven.hermes.installer}</value>
                 </property>
+                <property>
+                  <name>JAVAFX_VERSION</name>
+                  <value>${javafx.version}</value>
+                </property>
               </variables>
             </configuration>
             <executions>
@@ -160,7 +161,6 @@
           <plugin>
             <groupId>net.ju-n.maven.plugins</groupId>
             <artifactId>maven-checksum-plugin</artifactId>
-            <version>${maven-checksum-plugin.version}</version>
             <configuration>
               <!-- TODO parameterize this better-->
               <files>
@@ -172,7 +172,10 @@
                   ${assembly.build.directory}/${project.name.visible}-${project.version}-linux-bin.tar.gz
                 </file>
                 <file>
-                  ${assembly.build.directory}/${project.name.visible}-${project.version}-mac-bin.zip
+                  ${assembly.build.directory}/${project.name.visible}-${project.version}-mac-x64-bin.zip
+                </file>
+                <file>
+                  ${assembly.build.directory}/${project.name.visible}-${project.version}-mac-arm64-bin.zip
                 </file>
                 <!-- Installers -->
                 <file>
@@ -182,7 +185,10 @@
                   ${installer.build.directory}/${project.name.visible}-x64-${project.version}.sh
                 </file>
                 <file>
-                  ${installer.build.directory}/${project.name.visible}-${project.version}.dmg
+                  ${installer.build.directory}/${project.name.visible}-x64-${project.version}.dmg
+                </file>
+                <file>
+                  ${installer.build.directory}/${project.name.visible}-arm64-${project.version}.dmg
                 </file>
               </files>
             </configuration>
